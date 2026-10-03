@@ -83,6 +83,55 @@ sequenceActions.forEach((button) => {
   });
 });
 
+function connectModeGroup(stageSelector, buttonSelector, dataKey) {
+  const stage = document.querySelector(stageSelector);
+  const buttons = document.querySelectorAll(buttonSelector);
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const mode = button.dataset[dataKey];
+      stage.dataset[dataKey] = mode;
+      buttons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+    });
+  });
+}
+
+connectModeGroup('[data-body-stage]', '[data-body-mode]', 'bodyMode');
+connectModeGroup('[data-signal-stage]', '[data-signal-mode]', 'signalMode');
+connectModeGroup('[data-optics-stage]', '[data-optics-mode]', 'opticsMode');
+connectModeGroup('[data-portal-stage]', '[data-portal-mode]', 'portalMode');
+
+const bodyStage = document.querySelector('[data-body-stage]');
+bodyStage.addEventListener('pointermove', (event) => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const bounds = bodyStage.getBoundingClientRect();
+  const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+  const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+  bodyStage.style.setProperty('--body-x', `${x * 23}px`);
+  bodyStage.style.setProperty('--body-y', `${y * 15}px`);
+});
+bodyStage.addEventListener('pointerleave', () => {
+  bodyStage.style.setProperty('--body-x', '0px');
+  bodyStage.style.setProperty('--body-y', '0px');
+});
+
+const opticsStage = document.querySelector('[data-optics-stage]');
+opticsStage.addEventListener('pointermove', (event) => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const bounds = opticsStage.getBoundingClientRect();
+  const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+  const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+  opticsStage.style.setProperty('--optic-x', `${x * 20}px`);
+  opticsStage.style.setProperty('--optic-y', `${y * 16}px`);
+});
+opticsStage.addEventListener('pointerleave', () => {
+  opticsStage.style.setProperty('--optic-x', '0px');
+  opticsStage.style.setProperty('--optic-y', '0px');
+});
+
 // The stage follows a cursor just enough to feel spatial, never enough to distract.
 let pointerFrame;
 playgroundStage.addEventListener('pointermove', (event) => {

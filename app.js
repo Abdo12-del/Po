@@ -171,6 +171,162 @@ cameraStage.addEventListener('pointerleave', () => {
   cameraStage.style.setProperty('--camera-y', '0px');
 });
 
+// Five-scene motion presentation: controlled, keyboard-accessible and user-paced.
+const motionDeck = document.querySelector('[data-motion-deck]');
+if (motionDeck) {
+  const deckSlides = Array.from(motionDeck.querySelectorAll('[data-deck-slide]'));
+  const deckStops = Array.from(motionDeck.querySelectorAll('[data-deck-go]'));
+  const deckCurrent = motionDeck.querySelector('[data-deck-current]');
+  const deckName = motionDeck.querySelector('[data-deck-name]');
+  const deckAnnouncement = motionDeck.querySelector('[data-deck-announcement]');
+  const deckProgress = motionDeck.querySelector('[data-deck-progress]');
+  const deckProgressTrack = motionDeck.querySelector('.deck-progress-track');
+  const previousSlide = motionDeck.querySelector('[data-deck-prev]');
+  const nextSlide = motionDeck.querySelector('[data-deck-next]');
+  const autoplayButton = motionDeck.querySelector('[data-deck-autoplay]');
+  const autoplayLabel = motionDeck.querySelector('[data-autoplay-label]');
+  const chapterNames = ['INTENTION', 'PHYSICALITY', 'PROPAGATION', 'OPTICS', 'NEW WORLDS'];
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let activeSlide = 0;
+  let autoplayTimer;
+  let isAutoplaying = false;
+  let deckInViewport = true;
+  let touchStartX = null;
+
+  function clearAutoplayTimer() {
+    window.clearTimeout(autoplayTimer);
+    autoplayTimer = undefined;
+  }
+
+  function updateAutoplayButton() {
+    const motionIsReduced = reducedMotionQuery.matches;
+    autoplayButton.disabled = motionIsReduced;
+    autoplayButton.title = motionIsReduced ? 'Automatic playback is disabled by your reduced-motion setting.' : '';
+    autoplayButton.setAttribute('aria-pressed', String(isAutoplaying));
+    autoplayButton.setAttribute('aria-label', motionIsReduced
+      ? 'Automatic presentation is disabled because reduced motion is enabled'
+      : isAutoplaying ? 'Pause automatic presentation' : 'Start automatic presentation');
+    autoplayLabel.textContent = motionIsReduced ? 'Off' : isAutoplaying ? 'Pause' : 'Auto';
+    autoplayButton.querySelector('.autoplay-icon').textContent = motionIsReduced ? '—' : isAutoplaying ? 'Ⅱ' : '▶';
+  }
+
+  function scheduleAutoplay() {
+    clearAutoplayTimer();
+    if (!isAutoplaying || document.hidden || !deckInViewport || reducedMotionQuery.matches) return;
+    if (activeSlide === deckSlides.length - 1) {
+      isAutoplaying = false;
+      updateAutoplayButton();
+      return;
+    }
+    autoplayTimer = window.setTimeout(() => showSlide(activeSlide + 1), 6500);
+  }
+
+  function showSlide(nextIndex) {
+    const target = Math.max(0, Math.min(deckSlides.length - 1, nextIndex));
+    if (target === activeSlide) return;
+    clearAutoplayTimer();
+
+    const oldSlide = deckSlides[activeSlide];
+    const newSlide = deckSlides[target];
+    oldSlide.classList.remove('is-active');
+    oldSlide.classList.add('is-exiting');
+    oldSlide.setAttribute('aria-hidden', 'true');
+    oldSlide.inert = true;
+
+    newSlide.classList.remove('is-exiting');
+    newSlide.classList.add('is-active');
+    newSlide.setAttribute('aria-hidden', 'false');
+    newSlide.inert = false;
+
+    activeSlide = target;
+    deckStops.forEach((stop, index) => {
+      const selected = index === activeSlide;
+      stop.classList.toggle('is-active', selected);
+      if (selected) stop.setAttribute('aria-current', 'step');
+      else stop.removeAttribute('aria-current');
+    });
+
+    const number = String(activeSlide + 1).padStart(2, '0');
+    deckCurrent.textContent = number;
+    deckName.textContent = chapterNames[activeSlide];
+    deckAnnouncement.textContent = `Slide ${activeSlide + 1} of ${deckSlides.length}: ${chapterNames[activeSlide].toLowerCase()}`;
+    deckProgress.style.width = `${((activeSlide + 1) / deckSlides.length) * 100}%`;
+    deckProgressTrack.setAttribute('aria-valuenow', String(activeSlide + 1));
+    previousSlide.disabled = activeSlide === 0;
+
+    const isLast = activeSlide === deckSlides.length - 1;
+    nextSlide.querySelector('span').textContent = isLast ? 'Replay story' : 'Next scene';
+    nextSlide.querySelector('b').textContent = isLast ? '↺' : '→';
+    nextSlide.setAttribute('aria-label', isLast ? 'Restart presentation' : 'Go to next slide');
+
+    window.setTimeout(() => oldSlide.classList.remove('is-exiting'), reducedMotionQuery.matches ? 20 : 980);
+    scheduleAutoplay();
+  }
+
+  previousSlide.addEventListener('click', () => showSlide(activeSlide - 1));
+  nextSlide.addEventListener('click', () => {
+    showSlide(activeSlide === deckSlides.length - 1 ? 0 : activeSlide + 1);
+  });
+  deckStops.forEach((stop) => stop.addEventListener('click', () => showSlide(Number(stop.dataset.deckGo))));
+
+  autoplayButton.addEventListener('click', () => {
+    if (reducedMotionQuery.matches) return;
+    isAutoplaying = !isAutoplaying;
+    if (isAutoplaying && activeSlide === deckSlides.length - 1) showSlide(0);
+    updateAutoplayButton();
+    scheduleAutoplay();
+  });
+
+  motionDeck.addEventListener('keydown', (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      showSlide(activeSlide === deckSlides.length - 1 ? 0 : activeSlide + 1);
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      showSlide(activeSlide - 1);
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      showSlide(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      showSlide(deckSlides.length - 1);
+    }
+  });
+
+  const deckStage = motionDeck.querySelector('[data-deck-stage]');
+  deckStage.addEventListener('pointerdown', (event) => {
+    touchStartX = event.pointerType === 'touch' ? event.clientX : null;
+  }, { passive: true });
+  deckStage.addEventListener('pointerup', (event) => {
+    if (touchStartX === null) return;
+    const delta = event.clientX - touchStartX;
+    touchStartX = null;
+    if (Math.abs(delta) > 55) showSlide(delta < 0 ? activeSlide + 1 : activeSlide - 1);
+  }, { passive: true });
+  deckStage.addEventListener('pointercancel', () => { touchStartX = null; }, { passive: true });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) clearAutoplayTimer();
+    else scheduleAutoplay();
+  });
+  const deckVisibilityObserver = new IntersectionObserver((entries) => {
+    deckInViewport = entries[0].intersectionRatio > 0.15;
+    if (deckInViewport) scheduleAutoplay();
+    else clearAutoplayTimer();
+  }, { threshold: [0, 0.15] });
+  deckVisibilityObserver.observe(motionDeck);
+  reducedMotionQuery.addEventListener('change', () => {
+    if (reducedMotionQuery.matches) {
+      isAutoplaying = false;
+      clearAutoplayTimer();
+    }
+    updateAutoplayButton();
+  });
+
+  updateAutoplayButton();
+}
+
 // Bring section choreography in as the reader reaches it.
 const sections = document.querySelectorAll('main > section');
 const revealObserver = new IntersectionObserver((entries) => {

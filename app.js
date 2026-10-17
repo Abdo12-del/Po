@@ -171,7 +171,7 @@ cameraStage.addEventListener('pointerleave', () => {
   cameraStage.style.setProperty('--camera-y', '0px');
 });
 
-// Five-scene motion presentation: controlled, keyboard-accessible and user-paced.
+// Seven-slide Roadster physics presentation: controlled, keyboard-accessible and user-paced.
 const motionDeck = document.querySelector('[data-motion-deck]');
 if (motionDeck) {
   const deckSlides = Array.from(motionDeck.querySelectorAll('[data-deck-slide]'));
@@ -185,7 +185,7 @@ if (motionDeck) {
   const nextSlide = motionDeck.querySelector('[data-deck-next]');
   const autoplayButton = motionDeck.querySelector('[data-deck-autoplay]');
   const autoplayLabel = motionDeck.querySelector('[data-autoplay-label]');
-  const chapterNames = ['INTENTION', 'PHYSICALITY', 'PROPAGATION', 'OPTICS', 'NEW WORLDS'];
+  const chapterNames = ['المقدمة', 'العرض والحدود', 'منظومة الدفع', 'شرط الإقلاع', 'العزم والتحكم', 'الشفط والاحتكاك', 'الخلاصة'];
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   let activeSlide = 0;
   let autoplayTimer;
@@ -201,12 +201,12 @@ if (motionDeck) {
   function updateAutoplayButton() {
     const motionIsReduced = reducedMotionQuery.matches;
     autoplayButton.disabled = motionIsReduced;
-    autoplayButton.title = motionIsReduced ? 'Automatic playback is disabled by your reduced-motion setting.' : '';
+    autoplayButton.title = motionIsReduced ? 'التشغيل التلقائي متوقف بسبب إعداد تقليل الحركة.' : '';
     autoplayButton.setAttribute('aria-pressed', String(isAutoplaying));
     autoplayButton.setAttribute('aria-label', motionIsReduced
-      ? 'Automatic presentation is disabled because reduced motion is enabled'
-      : isAutoplaying ? 'Pause automatic presentation' : 'Start automatic presentation');
-    autoplayLabel.textContent = motionIsReduced ? 'Off' : isAutoplaying ? 'Pause' : 'Auto';
+      ? 'التشغيل التلقائي متوقف لأن تقليل الحركة مفعّل'
+      : isAutoplaying ? 'إيقاف التشغيل التلقائي' : 'تشغيل العرض تلقائياً');
+    autoplayLabel.textContent = motionIsReduced ? 'متوقف' : isAutoplaying ? 'إيقاف' : 'تلقائي';
     autoplayButton.querySelector('.autoplay-icon').textContent = motionIsReduced ? '—' : isAutoplaying ? 'Ⅱ' : '▶';
   }
 
@@ -249,15 +249,15 @@ if (motionDeck) {
     const number = String(activeSlide + 1).padStart(2, '0');
     deckCurrent.textContent = number;
     deckName.textContent = chapterNames[activeSlide];
-    deckAnnouncement.textContent = `Slide ${activeSlide + 1} of ${deckSlides.length}: ${chapterNames[activeSlide].toLowerCase()}`;
+    deckAnnouncement.textContent = `الشريحة ${activeSlide + 1} من ${deckSlides.length}: ${chapterNames[activeSlide]}`;
     deckProgress.style.width = `${((activeSlide + 1) / deckSlides.length) * 100}%`;
     deckProgressTrack.setAttribute('aria-valuenow', String(activeSlide + 1));
     previousSlide.disabled = activeSlide === 0;
 
     const isLast = activeSlide === deckSlides.length - 1;
-    nextSlide.querySelector('span').textContent = isLast ? 'Replay story' : 'Next scene';
-    nextSlide.querySelector('b').textContent = isLast ? '↺' : '→';
-    nextSlide.setAttribute('aria-label', isLast ? 'Restart presentation' : 'Go to next slide');
+    nextSlide.querySelector('span').textContent = isLast ? 'إعادة العرض' : 'التالي';
+    nextSlide.querySelector('b').textContent = isLast ? '↺' : '←';
+    nextSlide.setAttribute('aria-label', isLast ? 'إعادة العرض من البداية' : 'الانتقال إلى الشريحة التالية');
 
     window.setTimeout(() => oldSlide.classList.remove('is-exiting'), reducedMotionQuery.matches ? 20 : 980);
     scheduleAutoplay();
@@ -268,6 +268,13 @@ if (motionDeck) {
     showSlide(activeSlide === deckSlides.length - 1 ? 0 : activeSlide + 1);
   });
   deckStops.forEach((stop) => stop.addEventListener('click', () => showSlide(Number(stop.dataset.deckGo))));
+  document.querySelectorAll('[data-deck-jump]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      showSlide(Number(link.dataset.deckJump));
+      motionDeck.scrollIntoView({ behavior: reducedMotionQuery.matches ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
 
   autoplayButton.addEventListener('click', () => {
     if (reducedMotionQuery.matches) return;
@@ -305,6 +312,30 @@ if (motionDeck) {
     if (Math.abs(delta) > 55) showSlide(delta < 0 ? activeSlide + 1 : activeSlide - 1);
   }, { passive: true });
   deckStage.addEventListener('pointercancel', () => { touchStartX = null; }, { passive: true });
+
+  const thrustRatioInput = motionDeck.querySelector('[data-thrust-ratio]');
+  if (thrustRatioInput) {
+    const forceStage = thrustRatioInput.closest('[data-thrust-sim]');
+    const thrustOutput = motionDeck.querySelector('[data-thrust-output]');
+    const liftStatus = motionDeck.querySelector('[data-lift-status]');
+    const updateForceModel = () => {
+      const ratio = Number(thrustRatioInput.value) / 100;
+      forceStage.style.setProperty('--thrust-scale', ratio.toFixed(2));
+      thrustOutput.textContent = `${ratio.toFixed(2)} × mg`;
+      if (ratio > 1.02) {
+        forceStage.dataset.liftState = 'rising';
+        liftStatus.textContent = 'الدفع يتجاوز الوزن · محصلة إلى الأعلى';
+      } else if (ratio >= 0.98) {
+        forceStage.dataset.liftState = 'balanced';
+        liftStatus.textContent = 'توازن تقريبي · المحصلة الرأسية ≈ صفر';
+      } else {
+        forceStage.dataset.liftState = 'grounded';
+        liftStatus.textContent = 'الدفع أقل من الوزن · لا إقلاع';
+      }
+    };
+    thrustRatioInput.addEventListener('input', updateForceModel);
+    updateForceModel();
+  }
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) clearAutoplayTimer();

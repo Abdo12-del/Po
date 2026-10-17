@@ -539,3 +539,194 @@ body.slide-mode { min-width:320px; min-height:0; overflow:hidden; background:#09
 @media (prefers-reduced-motion:reduce) {
   .scene-roadster.has-webgl .roadster-webgl { scroll-behavior:auto; }
 }
+
+/* Academic thesis-defense redesign, inspired by the linked Algerian graduation cover. */
+body.academic-presentation {
+  --academic-paper: #f3f0e8;
+  --academic-white: #fffefa;
+  --academic-ink: #1c2d3b;
+  --academic-muted: #62707a;
+  --academic-rule: rgba(28, 45, 59, .19);
+  --academic-gold: #aa8950;
+  --academic-green: #567568;
+  min-width: 320px;
+  background: var(--academic-paper);
+  color: var(--academic-ink);
+}
+html:has(body.academic-presentation),
+html:has(body.academic-presentation) body { background: var(--academic-paper); }
+body.academic-presentation .presentation-mode {
+  background: radial-gradient(ellipse at 52% 40%, rgba(170,137,80,.08), transparent 48%), var(--academic-paper);
+}
+body.academic-presentation .presenter-chrome {
+  color: var(--academic-muted);
+  font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  letter-spacing: .015em;
+}
+body.academic-presentation .presenter-brand { gap: 10px; }
+body.academic-presentation .presenter-brand > span { color: var(--academic-gold); animation: none; }
+body.academic-presentation .presenter-brand strong { color: var(--academic-ink); font: 600 10px "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif; letter-spacing: 0; }
+body.academic-presentation .presenter-brand i { color: rgba(28,45,59,.28); }
+body.academic-presentation .presenter-brand small { color: var(--academic-muted); font: 9px "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif; letter-spacing: 0; }
+body.academic-presentation .presenter-format { color: var(--academic-muted); font: 9px "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif; }
+body.academic-presentation .presenter-format i { background: var(--academic-gold); }
+body.academic-presentation .presenter-actions button { border-color: var(--academic-rule); background: rgba(255,255,255,.48); color: var(--academic-ink); }
+body.academic-presentation .presenter-actions button:hover { color: #72582c; border-color: var(--academic-gold); }
+body.academic-presentation .presenter-actions button:focus-visible { outline-color: var(--academic-gold); }
+
+body.academic-presentation .roadster-deck {
+  --deck-lime: #aa8950;
+  --deck-violet: #697d8b;
+  --deck-blue: #7893a0;
+  --deck-coral: #a56f59;
+  --deck-ink: #142b3d;
+  --deck-white: #f5f1e8;
+  color: var(--academic-ink);
+}
+body.academic-presentation .roadster-deck::before {
+  opacity: .36;
+  background-image: linear-gradient(rgba(28,45,59,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(28,45,59,.06) 1px, transparent 1px);
+  mask-image: linear-gradient(180deg, black, transparent 92%);
+}
+body.academic-presentation .roadster-deck::after {
+  opacity: .8;
+  background: radial-gradient(ellipse at 73% 35%, rgba(86,117,104,.07), transparent 38%), radial-gradient(ellipse at 9% 91%, rgba(170,137,80,.08), transparent 32%);
+}
+body.academic-presentation .roadster-deck .deck-atmosphere { opacity: .55; }
+body.academic-presentation .roadster-deck .atmosphere-orbit { border-color: rgba(86,117,104,.16); }
+body.academic-presentation .roadster-deck .atmosphere-orbit.orbit-b { border-color: rgba(170,137,80,.17); }
+body.academic-presentation .roadster-deck .atmosphere-orbit.orbit-c { border-color: rgba(28,45,59,.12); }
+body.academic-presentation .roadster-deck .deck-topline {
+  margin-bottom: 9px;
+  border-bottom: 1px solid var(--academic-rule);
+}
+body.academic-presentation .defense-heading {
+  flex-wrap: wrap;
+  gap: 5px 9px;
+  color: var(--academic-ink);
+  font: 9px "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  letter-spacing: 0;
+  direction: rtl;
+}
+body.academic-presentation .defense-heading b { color: var(--academic-ink); font-weight: 600; }
+body.academic-presentation .defense-heading i { color: var(--academic-gold); }
+body.academic-presentation .defense-heading em {
+  margin-inline-start: 5px;
+  color: var(--academic-muted);
+  font: 9px "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+}
+body.academic-presentation .defense-edition {
+  color: var(--academic-muted);
+  font: 9px "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  letter-spacing: 0;
+}
+body.academic-presentation .defense-edition i { color: var(--academic-gold); }
+body.academic-presentation .roadster-deck .deck-stage {
+  border: 1px solid rgba(28,45,59,.14);
+  box-shadow: 0 22px 72px rgba(34,43,47,.13);
+}
+body.academic-presentation .roadster-deck .deck-slide {
+  border: 1px solid rgba(28,45,59,.17);
+  border-radius: 2px;
+  background: linear-gradient(115deg, var(--academic-white), #f8f6ef 76%, #f4f1e9);
+  box-shadow: 0 9px 30px rgba(27,41,50,.075);
+}
+body.academic-presentation .roadster-deck .deck-slide::before {
+  background: linear-gradient(115deg, transparent 23%, rgba(170,137,80,.045) 50%, transparent 76%);
+}
+body.academic-presentation .roadster-deck .deck-slide.is-exiting {
+  clip-path: inset(8% 42% 8% 0 round 2px);
+}
+body.academic-presentation .roadster-deck .deck-copy { color: var(--academic-ink); }
+body.academic-presentation .roadster-deck .deck-eyebrow {
+  color: #69747a;
+  font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  letter-spacing: 0;
+}
+body.academic-presentation .roadster-deck .deck-eyebrow span { color: #816739; font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif; }
+body.academic-presentation .roadster-deck .deck-eyebrow i { background: rgba(28,45,59,.25); }
+body.academic-presentation .roadster-deck .deck-copy h2 { color: var(--academic-ink); font-weight: 600; }
+body.academic-presentation .roadster-deck .deck-copy h2 span { color: var(--academic-green); font-weight: 500; }
+body.academic-presentation .roadster-deck .deck-description { color: #56636c; }
+body.academic-presentation .roadster-deck .deck-cta {
+  color: var(--academic-ink);
+  border-color: rgba(170,137,80,.75);
+}
+body.academic-presentation .roadster-deck .deck-cta b { color: #8a6d3d; }
+body.academic-presentation .roadster-deck .deck-cta:hover { color: #72582c; border-color: var(--academic-gold); }
+body.academic-presentation .roadster-deck .deck-project-meta { color: #69747a; }
+body.academic-presentation .roadster-deck .deck-project-meta b { color: var(--academic-ink); }
+body.academic-presentation .roadster-deck .deck-project-meta span { color: var(--academic-gold); }
+body.academic-presentation .roadster-deck .deck-equation {
+  border-right-color: var(--academic-gold);
+  background: linear-gradient(90deg, rgba(170,137,80,.035), rgba(170,137,80,.12));
+  color: #68727a;
+}
+body.academic-presentation .roadster-deck .deck-equation strong { color: var(--academic-ink); }
+body.academic-presentation .roadster-deck .deck-equation small { color: #667078; }
+body.academic-presentation .roadster-deck .deck-equation small b { color: #816739; }
+body.academic-presentation .roadster-deck .deck-caveat { color: #59656c; }
+body.academic-presentation .roadster-deck .deck-caveat b { color: #816739; }
+body.academic-presentation .roadster-deck .deck-conclusion { color: #496b5d; }
+body.academic-presentation .roadster-deck .deck-sources a { border-color: rgba(28,45,59,.17); color: var(--academic-ink); }
+body.academic-presentation .roadster-deck .deck-sources a:hover { border-color: var(--academic-gold); background: rgba(170,137,80,.08); }
+body.academic-presentation .roadster-deck .deck-sources a span { color: #69747a; }
+body.academic-presentation .roadster-deck .deck-chapter-readout { color: #68737a; }
+body.academic-presentation .roadster-deck .deck-chapter-readout .readout-current { color: #816739; }
+body.academic-presentation .roadster-deck .deck-chapter-readout i { background: rgba(28,45,59,.25); }
+body.academic-presentation .roadster-deck .deck-pagination button { color: rgba(28,45,59,.46); }
+body.academic-presentation .roadster-deck .deck-pagination button i { background: rgba(28,45,59,.18); }
+body.academic-presentation .roadster-deck .deck-pagination button.is-active,
+body.academic-presentation .roadster-deck .deck-pagination button.is-active span { color: #816739; }
+body.academic-presentation .roadster-deck .deck-pagination button.is-active i { background: var(--academic-gold); box-shadow: none; }
+body.academic-presentation .roadster-deck .deck-pagination button:hover span,
+body.academic-presentation .roadster-deck .deck-pagination button:focus-visible span { color: var(--academic-ink); }
+body.academic-presentation .roadster-deck .deck-transport button {
+  border-color: rgba(28,45,59,.2);
+  color: var(--academic-ink);
+  background: rgba(255,255,255,.55);
+}
+body.academic-presentation .roadster-deck .deck-transport button:hover:not(:disabled) { color: #72582c; border-color: var(--academic-gold); }
+body.academic-presentation .roadster-deck .deck-autoplay { color: #56636c !important; }
+body.academic-presentation .roadster-deck .deck-autoplay:hover:not(:disabled),
+body.academic-presentation .roadster-deck .deck-autoplay[aria-pressed="true"] { color: #816739 !important; }
+body.academic-presentation .roadster-deck .deck-next b { color: #816739; }
+body.academic-presentation .roadster-deck .deck-progress-track { background: rgba(28,45,59,.15); }
+body.academic-presentation .roadster-deck .deck-progress-track span { background: var(--academic-gold); box-shadow: none; }
+body.academic-presentation .roadster-deck .deck-bottomline { color: #6d777c; letter-spacing: .02em; }
+body.academic-presentation .roadster-deck .deck-bottomline > span:last-child i { background: var(--academic-green); box-shadow: none; }
+body.academic-presentation .roadster-deck button:focus-visible,
+body.academic-presentation .roadster-deck a:focus-visible { outline-color: var(--academic-gold); }
+
+/* Keep scientific illustrations as dark ink-plates within the lighter academic deck. */
+body.academic-presentation .scene-roadster { background: radial-gradient(ellipse at 57% 53%, #34495a, #1c3042 52%, #142536 84%); }
+body.academic-presentation .roadster-orbit { border-color: rgba(210,190,145,.28); }
+body.academic-presentation .roadster-orbit-b { border-color: rgba(216,226,223,.2); }
+body.academic-presentation .scene-reveal { background: radial-gradient(ellipse at 50% 46%, #33475a, #1c3042 52%, #142536 84%); }
+body.academic-presentation .scene-propulsion { background: radial-gradient(ellipse at 49% 48%, #263f4b, #1c3042 52%, #142536 84%); }
+body.academic-presentation .scene-forces,
+body.academic-presentation .scene-torque,
+body.academic-presentation .scene-verdict { background: radial-gradient(ellipse at 50% 45%, #34475a, #1c3042 54%, #142536 86%); }
+body.academic-presentation .scene-suction { background: radial-gradient(ellipse at 50% 42%, #30464d, #1c3042 56%, #142536 86%); }
+body.academic-presentation .roadster-measure i { background: linear-gradient(90deg, var(--academic-gold), transparent); }
+body.academic-presentation .hero-vector { color: #d8bd83; }
+body.academic-presentation .hero-vector i { background: #d8bd83; box-shadow: 0 0 9px rgba(216,189,131,.42); }
+body.academic-presentation .hero-vector i::after { border-left-color: #d8bd83; }
+body.academic-presentation .propulsion-line { background: linear-gradient(90deg, rgba(152,184,194,.78), rgba(216,189,131,.82)); box-shadow: 0 0 12px rgba(216,189,131,.19); }
+body.academic-presentation .propulsion-line i { background: #e3d0a7; box-shadow: 0 0 10px rgba(216,189,131,.54); }
+body.academic-presentation .propulsion-valve { border-color: rgba(216,189,131,.72); color: #e0c88f; }
+body.academic-presentation .propulsion-tank { border-color: rgba(152,184,194,.5); color: #b9d0d4; }
+body.academic-presentation .evidence-stamp { border-color: rgba(195,139,117,.42); background: rgba(195,139,117,.08); }
+body.academic-presentation .evidence-stamp b { color: #e3b19e; }
+body.academic-presentation .scene-roadster.has-webgl .roadster-art { transition: opacity .45s ease; }
+@media (max-width:680px) {
+  body.academic-presentation .presenter-brand { gap: 5px; }
+  body.academic-presentation .presenter-brand strong { font-size: 8px; }
+  body.academic-presentation .presenter-brand small { font-size: 7px; }
+  body.academic-presentation .defense-heading { max-width: 78%; font-size: 7px; gap: 3px 5px; }
+  body.academic-presentation .defense-heading em { flex-basis: 100%; margin: 1px 0 0; font-size: 7px; }
+  body.academic-presentation .defense-edition { font-size: 7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  body.academic-presentation .presenter-brand > span { animation: none; }
+}

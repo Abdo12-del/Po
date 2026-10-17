@@ -48,14 +48,14 @@ function initRoadsterScene(host) {
   const keyLight = new THREE.DirectionalLight(0xf4f2ed, 3.2);
   keyLight.position.set(4, 8, 5);
   scene.add(keyLight);
-  const limeLight = new THREE.PointLight(0xc4f06a, 22, 10, 2);
+  const limeLight = new THREE.PointLight(0xc9aa69, 22, 10, 2);
   limeLight.position.set(-3.2, 1.4, 0.3);
   scene.add(limeLight);
-  const violetLight = new THREE.PointLight(0x8971f5, 16, 12, 2);
+  const violetLight = new THREE.PointLight(0x91adbe, 16, 12, 2);
   violetLight.position.set(1.8, 2.2, -3.5);
   scene.add(violetLight);
 
-  const grid = new THREE.GridHelper(13, 28, 0x8971f5, 0x454154);
+  const grid = new THREE.GridHelper(13, 28, 0x9b8152, 0x454154);
   grid.position.y = -0.06;
   grid.material.transparent = true;
   grid.material.opacity = 0.27;
@@ -69,7 +69,7 @@ function initRoadsterScene(host) {
   groundGlow.position.y = -0.045;
   scene.add(groundGlow);
 
-  const orbitMaterial = new THREE.MeshBasicMaterial({ color: 0x8971f5, transparent: true, opacity: 0.36 });
+  const orbitMaterial = new THREE.MeshBasicMaterial({ color: 0x9b8152, transparent: true, opacity: 0.34 });
   const orbitA = new THREE.Mesh(new THREE.TorusGeometry(3.25, 0.009, 5, 144), orbitMaterial);
   orbitA.rotation.x = Math.PI / 2.3;
   orbitA.rotation.y = -0.2;
@@ -77,7 +77,7 @@ function initRoadsterScene(host) {
   scene.add(orbitA);
   const orbitB = new THREE.Mesh(
     new THREE.TorusGeometry(2.95, 0.006, 5, 144),
-    new THREE.MeshBasicMaterial({ color: 0xc4f06a, transparent: true, opacity: 0.28 }),
+    new THREE.MeshBasicMaterial({ color: 0x91adbe, transparent: true, opacity: 0.24 }),
   );
   orbitB.rotation.x = Math.PI / 2.6;
   orbitB.rotation.y = 0.38;
@@ -176,7 +176,7 @@ function initRoadsterScene(host) {
 
   const tireMaterial = new THREE.MeshStandardMaterial({ color: 0x101117, roughness: 0.72, metalness: 0.12 });
   const rimMaterial = new THREE.MeshStandardMaterial({ color: 0x9da3b1, roughness: 0.24, metalness: 0.86 });
-  const hubMaterial = new THREE.MeshStandardMaterial({ color: 0xc4f06a, roughness: 0.32, metalness: 0.7, emissive: 0x40511f, emissiveIntensity: 0.6 });
+  const hubMaterial = new THREE.MeshStandardMaterial({ color: 0xc4a96d, roughness: 0.32, metalness: 0.7, emissive: 0x4a3c22, emissiveIntensity: 0.55 });
   for (const x of [-2.12, 2.08]) {
     for (const side of [-1, 1]) {
       const wheel = new THREE.Group();
@@ -200,8 +200,8 @@ function initRoadsterScene(host) {
     }
   }
 
-  const trimMaterial = new THREE.MeshStandardMaterial({ color: 0xc4f06a, metalness: 0.45, roughness: 0.35, emissive: 0x29391b, emissiveIntensity: 0.25 });
-  const headlightMaterial = new THREE.MeshStandardMaterial({ color: 0xf4f2ed, emissive: 0xaacb81, emissiveIntensity: 1.3, roughness: 0.22 });
+  const trimMaterial = new THREE.MeshStandardMaterial({ color: 0xc4a96d, metalness: 0.45, roughness: 0.35, emissive: 0x3d311d, emissiveIntensity: 0.25 });
+  const headlightMaterial = new THREE.MeshStandardMaterial({ color: 0xf4f2ed, emissive: 0xe1c78d, emissiveIntensity: 1.1, roughness: 0.22 });
   for (const side of [-1, 1]) {
     const light = new THREE.Mesh(new THREE.SphereGeometry(0.055, 16, 12), headlightMaterial);
     light.position.set(3.06, 0.64, side * 0.43);
@@ -211,8 +211,8 @@ function initRoadsterScene(host) {
     car.add(accent);
   }
 
-  const jetMaterial = new THREE.MeshBasicMaterial({ color: 0xc4f06a, transparent: true, opacity: 0.78, side: THREE.DoubleSide, depthWrite: false });
-  const jetHighlight = new THREE.MeshBasicMaterial({ color: 0xf3ffca, transparent: true, opacity: 0.72, side: THREE.DoubleSide, depthWrite: false });
+  const jetMaterial = new THREE.MeshBasicMaterial({ color: 0xc4a96d, transparent: true, opacity: 0.72, side: THREE.DoubleSide, depthWrite: false });
+  const jetHighlight = new THREE.MeshBasicMaterial({ color: 0xffe7b4, transparent: true, opacity: 0.7, side: THREE.DoubleSide, depthWrite: false });
   const jets = [];
   for (const x of [-1.75, 1.55]) {
     for (const side of [-1, 1]) {
@@ -261,7 +261,7 @@ function initRoadsterScene(host) {
   particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(particlePositions, 3));
   const particles = new THREE.Points(
     particleGeometry,
-    new THREE.PointsMaterial({ color: 0xc4f06a, size: 0.035, sizeAttenuation: true, transparent: true, opacity: 0.72, depthWrite: false }),
+    new THREE.PointsMaterial({ color: 0xc4a96d, size: 0.035, sizeAttenuation: true, transparent: true, opacity: 0.72, depthWrite: false }),
   );
   car.add(particles);
 

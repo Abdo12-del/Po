@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,36 +9,18 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="presentation.css" />
   </head>
-  <body>
-    <div class="site-shell">
-      <header class="topbar" data-header>
-        <a class="wordmark" href="#top" aria-label="Tesla Roadster physics project home">
-          <span class="wordmark-mark" aria-hidden="true">↗</span>
-          <span>ROADSTER</span>
-          <span class="wordmark-divider">/</span>
-          <span class="wordmark-muted">PHYSICS STUDY</span>
-        </a>
-        <nav class="main-nav" lang="ar" dir="rtl" aria-label="التنقل في العرض">
-          <a href="#presentation" data-deck-jump="0">المقدمة</a>
-          <a href="#presentation" data-deck-jump="2">منظومة الدفع</a>
-          <a href="#presentation" data-deck-jump="3">الفيزياء</a>
-          <a href="#presentation" data-deck-jump="5">الثبات</a>
-          <a href="#presentation" data-deck-jump="6">الخلاصة</a>
-        </nav>
-        <a class="header-cta" href="#presentation" data-deck-jump="0">
-          <span>ابدأ العرض</span>
-          <span class="arrow" aria-hidden="true">↗</span>
-        </a>
+  <body class="slide-mode">
+    <main class="presentation-mode" id="top" data-presentation-mode>
+      <header class="presenter-chrome" aria-label="أدوات العرض التقديمي">
+        <div class="presenter-brand"><span aria-hidden="true">✳</span><strong>عرض مشروع التخرّج</strong><i>/</i><small>TESLA ROADSTER · PHYSICS</small></div>
+        <div class="presenter-actions"><span class="presenter-format">7 شرائح <i></i> 16:9</span><button type="button" data-fullscreen aria-label="عرض ملء الشاشة">⛶ <span>ملء الشاشة</span></button></div>
       </header>
-
-      <main id="top">
         <section class="motion-deck roadster-deck" id="presentation" data-motion-deck role="region" tabindex="0" aria-label="عرض مشروع التخرج: تيسلا رودستر 2026 والفيزياء وراء القفزة">
           <div class="deck-atmosphere" aria-hidden="true"><span class="atmosphere-orbit orbit-a"></span><span class="atmosphere-orbit orbit-b"></span><span class="atmosphere-orbit orbit-c"></span><i></i><i></i><i></i></div>
           <div class="deck-inner">
-            <div class="deck-topline">
-              <a class="deck-mark" href="#top"><span>✳</span> TESLA <i>/</i> ROADSTER PHYSICS</a>
-              <div class="deck-live"><i></i><span>GRADUATION PROJECT</span><span class="deck-live-rule"></span><span>7 SLIDES · SELF-PACED</span></div>
-              <a class="deck-skip" href="#motion-appendix" lang="ar" dir="rtl">ملحق التقنيات الحركية <b aria-hidden="true">↓</b></a>
+            <div class="deck-topline" aria-label="هوية العرض">
+              <span class="defense-heading"><b>TESLA</b><i>/</i><b>ROADSTER</b><em>مشروع تخرّج · فيزياء المركبات</em></span>
+              <span class="defense-edition">الدفاع العلمي <i>·</i> 2026</span>
             </div>
 
             <div class="deck-stage" data-deck-stage aria-live="off">
@@ -53,6 +35,8 @@
                 <div class="deck-canvas scene-roadster" aria-hidden="true">
                   <div class="canvas-grid"></div><span class="canvas-coordinate coordinate-a">ROADSTER / 2026</span><span class="canvas-coordinate coordinate-b">FLIGHT STUDY / 01</span>
                   <div class="roadster-orbit roadster-orbit-a"></div><div class="roadster-orbit roadster-orbit-b"></div>
+                  <div class="hero-3d-scene" data-roadster-scene></div>
+                  <span class="three-interaction-hint" aria-hidden="true">DRAG TO ORBIT</span>
                   <div class="roadster-measure measure-a"><span>g</span><i></i></div><div class="roadster-measure measure-b"><span>Δv</span><i></i></div>
                   <svg class="roadster-art" viewBox="0 0 700 420" role="presentation">
                     <defs>
@@ -223,345 +207,7 @@
             <div class="deck-bottomline"><span>← → للتنقّل</span><span>مشروع تخرّج / فيزياء المركبات</span><span><i></i> TESLA ROADSTER / 2026</span></div>
           </div>
         </section>
-        <section class="hero section-grid" id="motion-appendix" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="eyebrow"><span class="eyebrow-dot"></span> Visual appendix / Motion system <span class="eyebrow-line"></span> Physics in motion</p>
-            <h1 id="hero-title">When force<br /><em>becomes form.</em></h1>
-            <p class="hero-lede">A motion-design appendix to the Roadster study: soft-body anticipation, impulse trails, refraction and camera depth make the underlying physics easier to feel.</p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="#presentation">Return to the presentation <span aria-hidden="true">↑</span></a>
-              <a class="text-link" href="#vocabulary">Explore motion techniques <span aria-hidden="true">↗</span></a>
-            </div>
-          </div>
-
-          <div class="hero-art" aria-label="Animated motion study">
-            <div class="hero-art-grid" aria-hidden="true"></div>
-            <div class="hero-art-caption caption-top"><span>FIG. 01</span><span>ORBIT / 240MS</span></div>
-            <div class="hero-art-caption caption-bottom"><span>SOFT BOUNCE</span><span class="caption-mark">↘</span></div>
-            <div class="orbit orbit-one" aria-hidden="true"></div>
-            <div class="orbit orbit-two" aria-hidden="true"></div>
-            <div class="orbit orbit-three" aria-hidden="true"></div>
-            <div class="hero-cross cross-a" aria-hidden="true">+</div>
-            <div class="hero-cross cross-b" aria-hidden="true">+</div>
-            <div class="hero-pulse" aria-hidden="true"></div>
-            <div class="hero-object" aria-hidden="true">
-              <div class="object-shine"></div>
-              <span class="object-glyph">✳</span>
-              <span class="object-label">PO</span>
-            </div>
-            <div class="hero-node node-a" aria-hidden="true"></div>
-            <div class="hero-node node-b" aria-hidden="true"></div>
-            <div class="hero-node node-c" aria-hidden="true"></div>
-          </div>
-
-          <div class="hero-bottomline">
-            <div class="scroll-note"><span class="scroll-track"><span></span></span> Scroll to deconstruct the move</div>
-            <div class="hero-stat"><strong>01</strong><span>/</span><span>04</span><small>BEATS IN A<br />SIMPLE MOVE</small></div>
-            <div class="hero-stat"><strong>∞</strong><small>SPACE TO<br />PLAY</small></div>
-          </div>
-        </section>
-
-        <section class="statement section-grid" aria-labelledby="statement-title">
-          <div class="section-index">01 <span>/</span> 04</div>
-          <div class="statement-copy">
-            <p class="eyebrow">The point of motion</p>
-            <h2 id="statement-title">Choreography<br />over <span>decoration.</span></h2>
-          </div>
-          <div class="statement-aside">
-            <p>Good motion directs attention. Great motion gives an interface a point of view.</p>
-            <a class="text-link" href="#principles">Start with the beats <span aria-hidden="true">↓</span></a>
-          </div>
-          <div class="signal-graphic" aria-hidden="true">
-            <div class="signal-axis"></div>
-            <div class="signal-path"></div>
-            <i class="signal-dot dot-1"></i><i class="signal-dot dot-2"></i><i class="signal-dot dot-3"></i><i class="signal-dot dot-4"></i>
-            <span class="signal-label label-1">ANTICIPATE</span><span class="signal-label label-2">TRAVEL</span><span class="signal-label label-3">SETTLE</span>
-          </div>
-        </section>
-
-        <section class="principles section-grid" id="principles" aria-labelledby="principles-title">
-          <div class="section-heading">
-            <div class="section-index">02 <span>/</span> 04</div>
-            <div>
-              <p class="eyebrow">The rhythm</p>
-              <h2 id="principles-title">Every move<br /><span>has a beat.</span></h2>
-            </div>
-            <p class="section-intro">Anticipation earns attention. Travel carries it. A soft landing makes the interaction feel inevitable.</p>
-          </div>
-          <div class="principle-grid">
-            <article class="principle-card" data-principle="anticipate">
-              <div class="card-topline"><span>01 / 03</span><span class="card-rule"></span><span>120ms</span></div>
-              <div class="principle-visual">
-                <div class="beat-shape beat-anticipate"><span></span></div>
-                <div class="visual-cross">+</div>
-              </div>
-              <div class="principle-info"><h3>Anticipate</h3><p>A tiny counter-move says “look here” before the main event begins.</p></div>
-              <button class="replay-button" type="button" aria-label="Replay anticipate animation"><span>Replay</span><span aria-hidden="true">↻</span></button>
-            </article>
-            <article class="principle-card" data-principle="travel">
-              <div class="card-topline"><span>02 / 03</span><span class="card-rule"></span><span>240ms</span></div>
-              <div class="principle-visual">
-                <div class="beat-shape beat-travel"><span></span></div>
-                <div class="travel-path"></div>
-                <div class="visual-cross">+</div>
-              </div>
-              <div class="principle-info"><h3>Travel</h3><p>Objects take the shortest expressive route, with momentum you can read.</p></div>
-              <button class="replay-button" type="button" aria-label="Replay travel animation"><span>Replay</span><span aria-hidden="true">↻</span></button>
-            </article>
-            <article class="principle-card" data-principle="settle">
-              <div class="card-topline"><span>03 / 03</span><span class="card-rule"></span><span>360ms</span></div>
-              <div class="principle-visual">
-                <div class="beat-shape beat-settle"><span></span></div>
-                <div class="visual-cross">+</div>
-              </div>
-              <div class="principle-info"><h3>Settle</h3><p>Follow-through and a soft bounce give every arrival a human finish.</p></div>
-              <button class="replay-button" type="button" aria-label="Replay settle animation"><span>Replay</span><span aria-hidden="true">↻</span></button>
-            </article>
-          </div>
-        </section>
-
-        <section class="vocabulary section-grid" id="vocabulary" aria-labelledby="vocabulary-title">
-          <div class="section-heading vocabulary-heading">
-            <div class="section-index">03 <span>/</span> 04</div>
-            <div>
-              <p class="eyebrow">The vocabulary</p>
-              <h2 id="vocabulary-title">A small<br /><span>set of gestures.</span></h2>
-            </div>
-            <p class="section-intro">Not tricks. A considered set of physical references for interfaces, identities and the spaces between them.</p>
-          </div>
-          <div class="vocab-grid">
-            <article class="vocab-card card-pop">
-              <div class="vocab-meta"><span>01</span><span>Pop / overshoot</span></div>
-              <div class="vocab-stage"><div class="pop-orb"></div><span class="stage-cross">+</span></div>
-              <div class="vocab-footer"><h3>Pop &amp; overshoot</h3><span class="duration">240ms</span></div>
-            </article>
-            <article class="vocab-card card-squash">
-              <div class="vocab-meta"><span>02</span><span>Squash / stretch</span></div>
-              <div class="vocab-stage"><div class="squash-orb"></div><span class="stage-cross">+</span></div>
-              <div class="vocab-footer"><h3>Squash &amp; stretch</h3><span class="duration">320ms</span></div>
-            </article>
-            <article class="vocab-card card-elastic">
-              <div class="vocab-meta"><span>03</span><span>Elastic / return</span></div>
-              <div class="vocab-stage"><div class="elastic-line"><i></i><i></i><i></i><i></i><i></i></div><span class="stage-cross">+</span></div>
-              <div class="vocab-footer"><h3>Elastic motion</h3><span class="duration">480ms</span></div>
-            </article>
-            <article class="vocab-card card-float">
-              <div class="vocab-meta"><span>04</span><span>Float / drift</span></div>
-              <div class="vocab-stage"><div class="float-card"><span>PO</span><i>✳</i></div><span class="stage-cross">+</span></div>
-              <div class="vocab-footer"><h3>Float &amp; drift</h3><span class="duration">∞</span></div>
-            </article>
-            <article class="vocab-card card-kinetic">
-              <div class="vocab-meta"><span>05</span><span>Type / rhythm</span></div>
-              <div class="vocab-stage"><div class="kinetic-word"><span>M</span><span>O</span><span>V</span><span>E</span></div><span class="stage-cross">+</span></div>
-              <div class="vocab-footer"><h3>Kinetic typography</h3><span class="duration">600ms</span></div>
-            </article>
-            <article class="vocab-card card-mask">
-              <div class="vocab-meta"><span>06</span><span>Mask / reveal</span></div>
-              <div class="vocab-stage"><div class="mask-reveal"><span>REVEAL</span></div><span class="stage-cross">+</span></div>
-              <div class="vocab-footer"><h3>Text &amp; mask reveal</h3><span class="duration">360ms</span></div>
-            </article>
-            <article class="vocab-card card-draw">
-              <div class="vocab-meta"><span>07</span><span>Path / draw-on</span></div>
-              <div class="vocab-stage"><svg class="draw-svg" viewBox="0 0 200 120" role="img" aria-label="A looping path being drawn"><path d="M20 75 C34 10, 80 16, 100 60 S165 110, 180 35" /><path class="draw-accent" d="M20 75 C34 10, 80 16, 100 60 S165 110, 180 35" /></svg><span class="stage-cross">+</span></div>
-              <div class="vocab-footer"><h3>Draw-on / stroke reveal</h3><span class="duration">720ms</span></div>
-            </article>
-            <article class="vocab-card card-morph">
-              <div class="vocab-meta"><span>08</span><span>Shape / transform</span></div>
-              <div class="vocab-stage"><div class="morph-blob"></div><span class="stage-cross">+</span></div>
-              <div class="vocab-footer"><h3>Morphing shapes</h3><span class="duration">840ms</span></div>
-            </article>
-            <article class="vocab-card card-particles">
-              <div class="vocab-meta"><span>09</span><span>Particle / assemble</span></div>
-              <div class="vocab-stage"><div class="particle-word" aria-label="PO made from particles"><span>P</span><span>O</span></div><span class="stage-cross">+</span></div>
-              <div class="vocab-footer"><h3>Particle assemble</h3><span class="duration">960ms</span></div>
-            </article>
-          </div>
-          <div class="vocab-tags" aria-label="Motion vocabulary list">
-            <span>Path animation</span><span>Parallax</span><span>Depth motion</span><span>Camera zoom</span><span>Camera pan</span><span>Dolly motion</span><span>Seamless transitions</span><span>Match cut</span><span>Whip transition</span><span>Glow pulse</span><span>Light sweep</span><span>Motion blur</span><span>Speed lines</span><span>Character animation</span><span>Blink / head turn / look-at</span><span>Pointing / wave / jump</span>
-          </div>
-        </section>
-
-        <section class="playground section-grid" id="playground" aria-labelledby="playground-title">
-          <div class="section-heading playground-heading">
-            <div class="section-index">04 <span>/</span> 04</div>
-            <div>
-              <p class="eyebrow">The playground</p>
-              <h2 id="playground-title">Make it<br /><span>yours.</span></h2>
-            </div>
-            <p class="section-intro">Pick a gesture. Watch how the same object shifts character when you change its intention.</p>
-          </div>
-          <div class="playground-panel">
-            <div class="playground-stage" data-playground-stage data-active="pulse">
-              <div class="stage-noise"></div>
-              <div class="stage-label label-live"><i></i> Live study</div>
-              <div class="playground-axis axis-x"></div><div class="playground-axis axis-y"></div>
-              <div class="playground-orbit orbit-p-1"></div><div class="playground-orbit orbit-p-2"></div>
-              <div class="playground-object"><span class="playground-glyph">✳</span><span>PO</span></div>
-              <div class="playground-shadow"></div>
-              <div class="playground-cursor">move</div>
-              <div class="stage-footnote"><span>01</span><span>cursor follows focus</span></div>
-            </div>
-            <div class="playground-controls">
-              <div class="control-intro"><span class="mono-label">CHOOSE A GESTURE</span><p>Use the moves as a starting point, not a formula.</p></div>
-              <div class="gesture-buttons" role="group" aria-label="Choose a playground gesture">
-                <button type="button" class="gesture-button is-active" data-gesture="pulse"><span class="gesture-num">01</span><span>Glow pulse</span><span class="gesture-arrow">↗</span></button>
-                <button type="button" class="gesture-button" data-gesture="dolly"><span class="gesture-num">02</span><span>Dolly motion</span><span class="gesture-arrow">↗</span></button>
-                <button type="button" class="gesture-button" data-gesture="assemble"><span class="gesture-num">03</span><span>Particle assemble</span><span class="gesture-arrow">↗</span></button>
-                <button type="button" class="gesture-button" data-gesture="whip"><span class="gesture-num">04</span><span>Whip transition</span><span class="gesture-arrow">↗</span></button>
-              </div>
-              <div class="timing-readout"><span>CURVE</span><strong data-curve>soft / out</strong><span class="readout-rule"></span><span>0.72s</span></div>
-            </div>
-          </div>
-          <div class="closing-note"><span class="note-star">✳</span><p>Motion should feel smooth, organic, intentional and premium — with natural easing, anticipation, follow-through and secondary motion.</p><span class="note-line"></span></div>
-        </section>
-
-        <section class="second-language" id="expressive" aria-labelledby="expressive-title">
-          <div class="expressive-inner">
-            <div class="expressive-intro">
-              <div class="section-index dark-index">05 <span>/</span> 06</div>
-              <div>
-                <p class="eyebrow eyebrow-dark"><i></i> A second language</p>
-                <h2 id="expressive-title">Move with<br /><em>instinct.</em></h2>
-              </div>
-              <p class="expressive-lede">When the moment calls for more character, motion gets curious. It attracts, ripples, folds, cascades and then knows when to disappear.</p>
-            </div>
-            <div class="language-ribbon" aria-label="Expressive motion language descriptors"><span>PLAYFUL</span><i></i><span>INTELLIGENT</span><i></i><span>CINEMATIC</span><i></i><span>CONTROLLED</span></div>
-
-            <div class="expressive-grid">
-              <article class="expressive-card field-card">
-                <div class="expressive-card-head"><div><span class="dark-label">01 / FIELD STUDY</span><h3>Attract <em>attention.</em></h3></div><span class="card-signal">A / R</span></div>
-                <div class="field-stage" data-field-stage data-field="attract">
-                  <div class="field-mesh"></div>
-                  <div class="field-ring ring-one"></div><div class="field-ring ring-two"></div><div class="field-ring ring-three"></div>
-                  <div class="field-wave wave-one"></div><div class="field-wave wave-two"></div>
-                  <div class="magnet-core"><i>✳</i><span>focus</span></div>
-                  <span class="field-particle field-particle-a"></span><span class="field-particle field-particle-b"></span><span class="field-particle field-particle-c"></span><span class="field-particle field-particle-d"></span><span class="field-particle field-particle-e"></span><span class="field-particle field-particle-f"></span>
-                  <span class="field-orbiting orbiting-a"></span><span class="field-orbiting orbiting-b"></span>
-                  <span class="field-impact"></span>
-                  <span class="field-corner">MAGNETIC / 01</span>
-                </div>
-                <div class="expressive-card-foot"><p>Attraction pulls a loose constellation into focus. Repulsion gives it air.</p><div class="switcher" role="group" aria-label="Choose magnetic behavior"><button type="button" class="is-active" data-field-mode="attract" aria-pressed="true">Attract</button><button type="button" data-field-mode="repel" aria-pressed="false">Repel</button></div></div>
-              </article>
-
-              <article class="expressive-card material-card">
-                <div class="expressive-card-head"><div><span class="dark-label">02 / MATERIAL STUDY</span><h3>Give it a <em>surface.</em></h3></div><span class="card-signal">M / 04</span></div>
-                <div class="material-stage" data-material-stage data-material="liquid">
-                  <div class="material-grid"></div>
-                  <div class="material-liquid"><span></span><i></i></div>
-                  <div class="material-sheet"><span class="sheet-corner">✳</span><strong>PO</strong><small>material / 02</small></div>
-                  <div class="material-peel"><span>PEEL</span><i></i></div>
-                  <div class="slide-panel panel-back"></div><div class="slide-panel panel-front"><span>SLIDE</span></div>
-                  <span class="material-shadow"></span>
-                  <span class="material-corner">LIQUID / FOLD / REVEAL</span>
-                </div>
-                <div class="expressive-card-foot"><p>Surfaces can melt, fold, flip or peel. Texture makes timing legible.</p><div class="switcher material-switcher" role="group" aria-label="Choose material behavior"><button type="button" class="is-active" data-material-mode="liquid" aria-pressed="true">Liquid</button><button type="button" data-material-mode="fold" aria-pressed="false">Fold</button><button type="button" data-material-mode="peel" aria-pressed="false">Peel</button><button type="button" data-material-mode="slide" aria-pressed="false">Slide</button></div></div>
-              </article>
-
-              <article class="expressive-card sequence-card">
-                <div class="expressive-card-head"><div><span class="dark-label">03 / TIME STUDY</span><h3>Let one thing <em>lead.</em></h3></div><span class="card-signal">T / 08</span></div>
-                <div class="sequence-stage" data-sequence-stage data-sequence-state="playing">
-                  <div class="sequence-grid"></div>
-                  <div class="sequence-path"></div>
-                  <div class="sequence-nodes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                  <div class="sequence-trails"><i></i><i></i><i></i><i></i></div>
-                  <div class="sequence-impact"></div>
-                  <div class="sequence-caption"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span></div>
-                  <span class="sequence-corner">SEQUENTIAL / CASCADE</span>
-                </div>
-                <div class="expressive-card-foot"><p>Staggering time creates a chain reaction: leader, echo, release.</p><div class="sequence-controls"><button type="button" class="sequence-action is-active" data-sequence-action="play"><span>Play cascade</span><b>↗</b></button><button type="button" class="sequence-action" data-sequence-action="freeze"><span>Freeze / release</span><b>Ⅱ</b></button></div></div>
-              </article>
-            </div>
-
-            <div class="cinema-block">
-              <div class="cinema-copy"><span class="dark-label">04 / CAMERA STUDY</span><h3>Make space<br /><em>respond.</em></h3><p>Depth is not a filter. It is a point of view: a foreground that shifts, a background that lags, a scene that expands when you arrive.</p><span class="camera-readout"><i></i> CAMERA PARALLAX <b>0.72</b></span></div>
-              <div class="cinema-stage" data-camera-stage>
-                <div class="cinema-sky"></div><div class="cinema-grid-floor"></div><div class="cinema-layer layer-back"><span>FIELD</span></div><div class="cinema-layer layer-mid"><span>PO</span><i>✳</i></div><div class="cinema-layer layer-front"><span>NOW</span></div>
-                <div class="tunnel tunnel-one"></div><div class="tunnel tunnel-two"></div><div class="tunnel tunnel-three"></div>
-                <div class="cinema-sweep"></div><span class="cinema-corner">SCENE / 04</span><span class="cinema-axis">X +  Y +  Z</span>
-              </div>
-            </div>
-
-            <div class="expressive-vocabulary" aria-label="Expressive motion vocabulary">
-              <span>Magnetic attraction</span><span>Magnetic repulsion</span><span>Orbit / circular / spiral</span><span>Wave motion</span><span>Ripple effect</span><span>Liquid flow</span><span>Gooey morph</span><span>Cloth-like motion</span><span>Paper fold &amp; unfold</span><span>Card flip</span><span>Page curl</span><span>Peel reveal</span><span>Sliding panels</span><span>Expanding / collapsing frames</span><span>Infinite loop</span><span>Pendulum / swing</span><span>Spring motion</span><span>Chain reaction</span><span>Domino motion</span><span>Sequential stagger</span><span>Cascade / follow-the-leader</span><span>Echo / trail / ghost</span><span>Time stretch</span><span>Slow motion accent</span><span>Sudden acceleration</span><span>Deceleration</span><span>Directional burst</span><span>Radial burst</span><span>Shockwave</span><span>Impact ripple</span><span>Particle dissolve / explosion</span><span>Particle trail</span><span>Light trail</span><span>Energy flow</span><span>Scanning light</span><span>Highlight sweep</span><span>Spotlight follow</span><span>Depth layer shift</span><span>Perspective shift</span><span>3D rotation / flip</span><span>Floating depth</span><span>Camera orbit</span><span>Tunnel / infinite zoom</span><span>Scene expansion / collapse</span><span>Environmental reaction</span>
-            </div>
-            <div class="expressive-footer-note"><span>✳</span><p>Combine movements naturally. One gesture leads, another follows, and the world around it reacts.</p><div></div><small>LANGUAGE 02 / 02</small></div>
-          </div>
-        </section>
-
-        <section class="advanced-lab" id="advanced" aria-labelledby="advanced-title">
-          <div class="advanced-inner">
-            <div class="advanced-intro">
-              <div class="section-index">06 <span>/</span> 06</div>
-              <div>
-                <p class="eyebrow"><span class="eyebrow-dot"></span> Advanced techniques</p>
-                <h2 id="advanced-title">Physicality<br /><em>with memory.</em></h2>
-              </div>
-              <p class="advanced-lede">The last layer is what lingers: a little drag, a delayed shadow, a broken frame, a surface that keeps the energy after the object has moved.</p>
-            </div>
-            <div class="advanced-rule"><span>BODY</span><i></i><span>FIELD</span><i></i><span>OPTICS</span><i></i><span>TIME</span><i></i><span>CAMERA</span></div>
-
-            <div class="advanced-grid">
-              <article class="advanced-card body-lab">
-                <div class="advanced-card-head"><div><span class="advanced-label">01 / SOFT BODY</span><h3>Make it <em>remember.</em></h3></div><span class="advanced-signal">B / 12</span></div>
-                <div class="body-stage" data-body-stage data-body-mode="jelly">
-                  <div class="body-grid"></div>
-                  <div class="body-shadow"></div>
-                  <div class="elastic-rope"><i></i><i></i><i></i><i></i><i></i></div>
-                  <div class="soft-body"><span>PO</span><i>✳</i></div>
-                  <div class="body-handle"></div>
-                  <div class="pendulum-arm"><i></i></div>
-                  <div class="spring-chain"><i></i><i></i><i></i><i></i></div>
-                  <span class="body-corner">JELLY / DRAG / LAG</span>
-                </div>
-                <div class="advanced-card-foot"><p>Rubber, jelly and taffy share one rule: motion leaves a trace in the material.</p><div class="advanced-switcher" role="group" aria-label="Choose soft body behavior"><button type="button" class="is-active" data-body-mode="jelly" aria-pressed="true">Jelly</button><button type="button" data-body-mode="stretch" aria-pressed="false">Taffy</button><button type="button" data-body-mode="snap" aria-pressed="false">Snap</button></div></div>
-              </article>
-
-              <article class="advanced-card signal-lab">
-                <div class="advanced-card-head"><div><span class="advanced-label">02 / SIGNAL SYSTEM</span><h3>Build it from <em>fragments.</em></h3></div><span class="advanced-signal">S / 24</span></div>
-                <div class="signal-stage" data-signal-stage data-signal-mode="assemble">
-                  <div class="signal-grid"></div><div class="signal-crosshair crosshair-one">+</div><div class="signal-crosshair crosshair-two">+</div>
-                  <div class="hud-line hud-line-top"><span>SYNC</span><b>08.42.17</b><span>LIVE</span></div>
-                  <div class="hud-line hud-line-bottom"><span>NODE_04</span><span>RX / 94%</span><span>▰▰▰</span></div>
-                  <div class="signal-scanbar"></div><div class="signal-radar"></div>
-                  <div class="signal-glyph"><span>P</span><span>O</span><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                  <div class="data-stream"><span>01 101 11</span><span>010 001</span><span>11 100 01</span><span>0101 10</span></div>
-                  <svg class="route-drawing" viewBox="0 0 300 170" aria-label="Animated route drawing"><path d="M18 139 C58 139 50 89 94 89 S126 128 164 111 S201 36 280 37" /><path d="M18 139 C58 139 50 89 94 89 S126 128 164 111 S201 36 280 37" class="route-active" /></svg>
-                  <span class="signal-corner">ASSEMBLE / TRACE / SCAN</span>
-                </div>
-                <div class="advanced-card-foot"><p>Pixels can assemble, dissolve, glitch or trace a route before the idea arrives.</p><div class="advanced-switcher" role="group" aria-label="Choose signal behavior"><button type="button" class="is-active" data-signal-mode="assemble" aria-pressed="true">Assemble</button><button type="button" data-signal-mode="shatter" aria-pressed="false">Shatter</button><button type="button" data-signal-mode="glitch" aria-pressed="false">Glitch</button></div></div>
-              </article>
-
-              <article class="advanced-card optics-lab">
-                <div class="advanced-card-head"><div><span class="advanced-label">03 / OPTICAL STUDY</span><h3>Move the <em>air.</em></h3></div><span class="advanced-signal">O / 09</span></div>
-                <div class="optics-stage" data-optics-stage data-optics-mode="glass">
-                  <div class="optics-light"></div><div class="optics-reflection"></div><div class="optics-world"><span class="optics-sun">✳</span><b>PO</b><i></i><i></i><i></i></div>
-                  <div class="optics-glass"><span></span></div><div class="optics-lens"></div><div class="optics-ripple"></div><span class="optics-corner">GLASS / HEAT / REFRACT</span>
-                </div>
-                <div class="advanced-card-foot"><p>Refraction, shadow and a traveling highlight make an empty plane feel inhabited.</p><div class="advanced-switcher" role="group" aria-label="Choose optical behavior"><button type="button" class="is-active" data-optics-mode="glass" aria-pressed="true">Glass</button><button type="button" data-optics-mode="lens" aria-pressed="false">Lens</button><button type="button" data-optics-mode="heat" aria-pressed="false">Heatwave</button></div></div>
-              </article>
-
-              <article class="advanced-card portal-lab">
-                <div class="advanced-card-head"><div><span class="advanced-label">04 / TIME + CAMERA</span><h3>Open a <em>way through.</em></h3></div><span class="advanced-signal">C / ∞</span></div>
-                <div class="portal-stage" data-portal-stage data-portal-mode="burst">
-                  <div class="portal-stars"></div><div class="portal-world"><span>SCENE</span><b>04</b></div><div class="portal-door door-left"></div><div class="portal-door door-right"></div><div class="portal-ring portal-ring-one"></div><div class="portal-ring portal-ring-two"></div><div class="portal-burst"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="portal-shadow"></div><span class="portal-corner">PORTAL / REWIND / LOOP</span>
-                </div>
-                <div class="advanced-card-foot"><p>Freeze the frame, reverse the world, then release the camera into the next scene.</p><div class="advanced-switcher" role="group" aria-label="Choose portal behavior"><button type="button" class="is-active" data-portal-mode="burst" aria-pressed="true">Burst</button><button type="button" data-portal-mode="freeze" aria-pressed="false">Freeze</button><button type="button" data-portal-mode="reverse" aria-pressed="false">Reverse</button></div></div>
-              </article>
-            </div>
-
-            <div class="advanced-vocabulary" aria-label="Advanced motion vocabulary"><span>Rubber band / jelly / taffy</span><span>Soft body / wobble / jello shake</span><span>Micro bounce / rotation / breathing</span><span>Floating suspension / weight shift</span><span>Pendulum / inertia / momentum</span><span>Drag &amp; lag / delayed follow</span><span>Overshoot return / snap back</span><span>Magnetic snap / sticky motion</span><span>Elastic connection / rope motion</span><span>Spring chain / sequential impact</span><span>Ripple / wave / radial propagation</span><span>Circular / spiral reveal</span><span>Spiral / radial collapse</span><span>Fragment assembly / disassembly</span><span>Shatter &amp; reassemble</span><span>Pixel dissolve / pixel assembly</span><span>Noise dissolve / digital glitch</span><span>Scan reveal / scanline / data stream / HUD</span><span>Grid transformation / expansion / collapse</span><span>Line network animation / connecting lines</span><span>Path tracing / route drawing</span><span>Moving dots / traveling highlight</span><span>Spotlight tracking</span><span>Shadow / reflection movement</span><span>Refraction / glass / lens distortion</span><span>Liquid refraction / ripple / heatwave distortion</span><span>Wave distortion / chromatic shift</span><span>Echo trail / motion echo / afterimage</span><span>Ghosting / time offset / frame skipping</span><span>Freeze frame / freeze-and-burst</span><span>Sudden stop / reverse / rewind</span><span>Loop reversal / seamless loop</span><span>Infinite rotation / endless scroll</span><span>Conveyor motion / sliding world</span><span>Scene rotation / world flip</span><span>Perspective warp / lens push / pull</span><span>Fisheye push / tunnel movement</span><span>Portal / doorway / window reveal</span><span>Camera through / behind / inside object</span><span>Object-to-environment transformation</span><span>Environment-to-object transformation</span></div>
-            <div class="advanced-footer-note"><span>✳</span><p>Intentional movement is connected movement: primary action, secondary reaction, then a clean return to stillness.</p><div></div><small>LANGUAGE 03 / 03</small></div>
-          </div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <div class="footer-mark"><span>↗</span><strong>ROADSTER</strong></div>
-        <p>Physics, made visible through motion.</p>
-        <a href="#presentation" data-deck-jump="0">Back to presentation <span aria-hidden="true">↑</span></a>
-        <div class="footer-meta"><span>Graduation project / Tesla Roadster physics</span><span>2026</span></div>
-      </footer>
-    </div>
-    <script src="app.js"></script>
+    </main>
+    <script type="module" src="presentation.js"></script>
   </body>
 </html>

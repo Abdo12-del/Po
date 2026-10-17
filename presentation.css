@@ -308,7 +308,7 @@
 .roadster-orbit { position:absolute; left:53%; top:53%; border:1px solid rgba(130,201,244,.19); border-radius:50%; transform:translate(-50%,-50%); }
 .roadster-orbit-a { width:83%; height:54%; transform:translate(-50%,-50%) rotate(-15deg); animation:roadster-orbit 18s linear infinite; }
 .roadster-orbit-b { width:58%; height:76%; border-color:rgba(196,240,106,.18); transform:translate(-50%,-50%) rotate(34deg); animation:roadster-orbit-reverse 22s linear infinite; }
-.roadster-art { position:absolute; z-index:4; left:1%; bottom:12%; width:98%; height:72%; overflow:visible; animation:roadster-hover 5.2s ease-in-out infinite; }
+.roadster-art { position:absolute; z-index:4; left:1%; bottom:12%; width:98%; height:72%; overflow:visible; animation:roadster-hover 5.2s ease-in-out infinite; transition:opacity .45s ease; }
 .car-ground-shadow { fill:rgba(0,0,0,.57); animation:roadster-shadow 5.2s ease-in-out infinite; }
 .roadster-body { stroke:rgba(244,242,237,.7); stroke-width:1.2; filter:drop-shadow(0 13px 13px rgba(0,0,0,.28)); }
 .roadster-window { stroke:rgba(196,240,106,.4); stroke-width:1; }
@@ -457,3 +457,85 @@
 @keyframes fan-turn { to { transform:rotate(360deg); } }
 @keyframes verdict-orbit { to { transform:translate(-50%,-50%) rotate(342deg); } }
 @keyframes verdict-morph { 0%,100% { border-radius:43% 57% 48% 52%;transform:translate(-50%,-50%) rotate(-4deg); } 50% { border-radius:56% 44% 42% 58%;transform:translate(-50%,-50%) rotate(5deg) scale(1.05); } }
+
+
+/* Presentation-player mode: an actual slide canvas, not a scrolling website. */
+html:has(body.slide-mode),
+html:has(body.slide-mode) body { width:100%; height:100%; margin:0; overflow:hidden; background:#090a0f; }
+body.slide-mode { min-width:320px; min-height:0; overflow:hidden; background:#090a0f; color:#f4f2ed; }
+.presentation-mode { width:100%; height:100svh; min-height:560px; padding:12px 18px 14px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; overflow:hidden; background:radial-gradient(ellipse at 54% 43%,rgba(92,76,176,.12),transparent 45%),#090a0f; }
+.presenter-chrome { width:min(94vw,1440px); min-height:28px; display:flex; align-items:center; justify-content:space-between; gap:18px; color:rgba(244,242,237,.45); font:8px ui-monospace,monospace; letter-spacing:.13em; text-transform:uppercase; }
+.presenter-brand { display:flex; align-items:center; gap:9px; }.presenter-brand>span{color:#c4f06a;font-size:15px;animation:deck-mark-turn 15s linear infinite}.presenter-brand strong{color:rgba(244,242,237,.86);font:700 8px ui-monospace,monospace;letter-spacing:.13em}.presenter-brand i{color:rgba(244,242,237,.25);font-style:normal}.presenter-brand small{font:8px ui-monospace,monospace;letter-spacing:.1em}.presenter-actions{display:flex;align-items:center;gap:18px}.presenter-format{display:flex;align-items:center;gap:9px}.presenter-format i{width:4px;height:4px;border-radius:50%;background:#c4f06a}.presenter-actions button{padding:6px 10px;border:1px solid rgba(244,242,237,.15);background:rgba(244,242,237,.03);color:rgba(244,242,237,.7);font:9px "Noto Sans Arabic","Segoe UI",sans-serif;cursor:pointer;transition:border-color .2s ease,color .2s ease}.presenter-actions button:hover{color:#c4f06a;border-color:rgba(196,240,106,.55)}.presenter-actions button:focus-visible{outline:2px solid #c4f06a;outline-offset:3px}
+.roadster-deck { width:min(94vw,calc((100svh - 178px)*1.77778),1440px); height:auto; min-height:0; flex:0 0 auto; margin:0 auto; overflow:visible; background:transparent; }
+.roadster-deck::before { opacity:.18; }.roadster-deck::after { opacity:.7; }
+.roadster-deck .deck-atmosphere { position:absolute; inset:-12vh -12vw; }
+.roadster-deck .deck-inner { width:100%; height:auto; min-height:0; margin:0; padding:0; display:flex; flex-direction:column; gap:0; }
+.roadster-deck .deck-topline { height:25px; min-height:25px; margin:0 0 9px; padding:0 3px; border:0; }
+.defense-heading { display:flex; align-items:center; gap:8px; color:rgba(244,242,237,.58); font:8px ui-monospace,monospace; letter-spacing:.12em; direction:ltr; }.defense-heading b{color:rgba(244,242,237,.87);font-weight:600}.defense-heading i{color:rgba(244,242,237,.25);font-style:normal}.defense-heading em{margin-left:9px;color:rgba(244,242,237,.44);font:9px "Noto Sans Arabic","Segoe UI",sans-serif;letter-spacing:0;direction:rtl}.defense-edition{color:rgba(244,242,237,.39);font:8px ui-monospace,monospace;letter-spacing:.1em;direction:rtl}.defense-edition i{padding:0 4px;color:#c4f06a;font-style:normal}
+.roadster-deck .deck-stage { width:100%; height:auto; min-height:0; max-height:none; aspect-ratio:16/9; margin:0; overflow:hidden; perspective:1400px; box-shadow:0 24px 90px rgba(0,0,0,.34); }
+.roadster-deck .deck-slide { border-radius:2px; }
+.roadster-deck .deck-copy h2 { font-size:clamp(42px,5.15vw,72px); line-height:1.13; }
+.roadster-deck .deck-description { max-width:450px; font-size:clamp(12px,.98vw,14px); line-height:1.84; }
+.roadster-deck .deck-canvas { width:100%; height:min(100%,480px); aspect-ratio:1.27; }
+.roadster-deck .deck-footer { min-height:40px; margin-top:10px; grid-template-columns:minmax(100px,.65fr) minmax(260px,1.55fr) minmax(190px,1fr); gap:15px; }
+.roadster-deck .deck-chapter-readout { font-family:"Noto Sans Arabic","Segoe UI",sans-serif; font-size:9px; letter-spacing:0; }
+.roadster-deck .deck-pagination { gap:9px; }.roadster-deck .deck-pagination button{gap:6px}.roadster-deck .deck-pagination button span{font-size:8px}
+.roadster-deck .deck-transport { gap:6px; }.roadster-deck .deck-transport button { min-height:33px; }
+.roadster-deck .deck-arrow { width:34px; }.roadster-deck .deck-autoplay{padding:0 10px}.roadster-deck .deck-next{min-width:105px}
+.roadster-deck .deck-progress-track { margin-top:7px; }.roadster-deck .deck-bottomline { margin-top:8px; font-size:7px; }
+.roadster-deck .deck-slide.is-exiting { clip-path:inset(8% 42% 8% 0 round 2px); }
+.roadster-deck .deck-copy h2,.roadster-deck .deck-description,.roadster-deck .deck-cta { direction:rtl; }
+.roadster-deck button:focus-visible,.roadster-deck a:focus-visible{outline:2px solid #c4f06a;outline-offset:3px}
+@media (max-width:1100px) and (min-width:681px) {
+  .presentation-mode { padding-left:12px; padding-right:12px; }
+  .roadster-deck { width:min(96vw,calc((100svh - 172px)*1.77778),1440px); }
+  .roadster-deck .deck-slide { grid-template-columns:minmax(205px,.9fr) minmax(0,1.1fr); gap:18px; padding:25px; }
+  .roadster-deck .deck-copy h2 { font-size:clamp(41px,5.8vw,60px); }
+  .roadster-deck .deck-description { font-size:11px; line-height:1.68; }
+  .roadster-deck .deck-equation { margin-top:10px; padding:8px 10px; }.roadster-deck .deck-equation strong{font-size:16px}
+  .roadster-deck .deck-footer { grid-template-columns:95px minmax(220px,1.5fr) 180px; gap:8px; }
+}
+@media (max-width:680px) {
+  html:has(body.slide-mode),html:has(body.slide-mode) body { height:auto; min-height:100%; overflow:auto; }
+  body.slide-mode { overflow:auto; }
+  .presentation-mode { width:100%; height:auto; min-height:100svh; padding:10px 12px 14px; justify-content:flex-start; gap:7px; overflow:visible; }
+  .presenter-chrome { width:100%; min-height:28px; gap:8px; }
+  .presenter-brand { gap:5px; }.presenter-brand>span{font-size:13px}.presenter-brand strong{font-size:7px}.presenter-brand small{font-size:6px;letter-spacing:.06em}.presenter-brand i{display:none}
+  .presenter-actions{gap:7px}.presenter-format{font-size:6px;gap:5px}.presenter-actions button{padding:5px 7px;font-size:8px}.presenter-actions button span{display:none}
+  .roadster-deck { width:100%; height:auto; min-height:0; flex:none; margin:0; }
+  .roadster-deck .deck-topline { height:22px; min-height:22px; margin-bottom:7px; }.defense-heading{gap:5px;font-size:7px}.defense-heading em{font-size:8px;margin-left:3px}.defense-edition{font-size:6px}
+  .roadster-deck .deck-stage { width:100%; height:775px; min-height:775px; max-height:none; aspect-ratio:auto; margin:0; }
+  .roadster-deck .deck-slide { display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:11px; padding:15px 13px 12px; }
+  .roadster-deck .deck-slide.is-exiting { clip-path:inset(8% 0 8% 55%); transform:translate3d(-10%,0,-60px) rotateY(-4deg) scale(.97); }
+  .roadster-deck .deck-copy { flex:0 0 auto; width:100%; }.roadster-deck .deck-eyebrow{margin-bottom:7px;font-size:7px;gap:6px}.roadster-deck .deck-copy h2{font-size:clamp(39px,10.5vw,51px);line-height:1.07}.roadster-deck .deck-description{max-width:100%;margin-top:7px;font-size:10.5px;line-height:1.62}.roadster-deck .deck-project-meta{margin-top:8px;font-size:7px}.roadster-deck .deck-cta{margin-top:9px;padding-bottom:4px;font-size:8px;gap:10px}
+  .roadster-deck .deck-equation{margin-top:8px;padding:7px 9px;gap:3px;font-size:7px}.roadster-deck .deck-equation strong{font-size:14px}.roadster-deck .deck-equation small,.roadster-deck .deck-equation small b{font-size:7px}.roadster-deck .deck-caveat{margin-top:6px;font-size:7px;line-height:1.45}.roadster-deck .deck-conclusion{margin-top:7px;font-size:9px;line-height:1.5}.roadster-deck .deck-sources{margin-top:6px;gap:3px}.roadster-deck .deck-sources a{padding:4px 5px;font-size:6px}.roadster-deck .deck-sources a span{font-size:6px}
+  .roadster-deck .deck-canvas { flex:1 1 auto; width:100%; height:auto; min-height:0; max-height:295px; aspect-ratio:1.34; }
+  .roadster-deck .canvas-coordinate { top:9px; font-size:6px; }.roadster-deck .coordinate-a{left:9px}.roadster-deck .coordinate-b{right:9px}.roadster-deck .canvas-caption{left:9px;right:9px;bottom:8px;font-size:6px;gap:6px}
+  .roadster-deck .deck-footer { min-height:0; display:grid; grid-template-columns:1fr auto; gap:8px 5px; margin-top:9px; }
+  .roadster-deck .deck-chapter-readout{grid-column:1;grid-row:1;gap:6px;font-size:7px}.roadster-deck .deck-chapter-readout .readout-current{font-size:10px}.roadster-deck .deck-transport{grid-column:2;grid-row:1;gap:3px}.roadster-deck .deck-transport button{min-height:30px}.roadster-deck .deck-arrow{width:28px}.roadster-deck .deck-autoplay{padding:0 6px;font-size:6px}.roadster-deck .deck-next{min-width:73px;padding:0 6px;font-size:7px}
+  .roadster-deck .deck-pagination{grid-column:1/-1;grid-row:2;gap:5px}.roadster-deck .deck-pagination button{gap:3px}.roadster-deck .deck-pagination button span{font-size:6px}.roadster-deck .deck-progress-track{margin-top:7px}.roadster-deck .deck-bottomline{margin-top:8px;font-size:6px;letter-spacing:.04em}.roadster-deck .deck-bottomline>span:nth-child(2){display:none}
+}
+@media (max-width:380px) {
+  .presentation-mode { padding-left:9px; padding-right:9px; }
+  .roadster-deck .deck-stage { height:800px; min-height:800px; }
+  .roadster-deck .deck-copy h2 { font-size:38px; }.roadster-deck .deck-description{font-size:10px}
+  .roadster-deck .deck-pagination{gap:4px}.roadster-deck .deck-next{min-width:69px}
+}
+@media (prefers-reduced-motion:reduce) {
+  .presentation-mode *, .presentation-mode *::before, .presentation-mode *::after { animation-duration:.001ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.001ms!important; }
+  .roadster-deck .deck-slide { transform:none!important; clip-path:none!important; }
+}
+
+/* GitHub-sourced Three.js hero scene with the SVG retained as a graceful fallback. */
+.hero-3d-scene { position:absolute; z-index:3; inset:0; overflow:hidden; pointer-events:none; }
+.hero-3d-scene canvas.roadster-webgl { position:absolute; inset:0; display:block; width:100%; height:100%; pointer-events:auto; cursor:grab; touch-action:none; }
+.hero-3d-scene canvas.roadster-webgl:active { cursor:grabbing; }
+.scene-roadster.has-webgl .roadster-art { opacity:0; animation:none; pointer-events:none; }
+.scene-roadster.has-webgl .three-interaction-hint { display:block; }
+.three-interaction-hint { display:none; position:absolute; z-index:7; right:18px; top:18px; padding:6px 8px; border:1px solid rgba(244,242,237,.16); background:rgba(11,12,18,.48); color:rgba(244,242,237,.5); font:7px ui-monospace,monospace; letter-spacing:.12em; direction:ltr; pointer-events:none; }
+@media (max-width:680px) {
+  .three-interaction-hint { right:10px; top:10px; font-size:6px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .scene-roadster.has-webgl .roadster-webgl { scroll-behavior:auto; }
+}
